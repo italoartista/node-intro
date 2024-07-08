@@ -1,25 +1,31 @@
 import  { createServer } from 'node:http'
-import { principal, sobre, contato, enviado } from './template.js'
+import { principal, sobre, contato, enviado, topo, rodape } from './template.js'
+import { URLSearchParams } from 'node:url'
 import url from 'node:url'
 
 const server = createServer((req, res) => {
-  const { url: reqUrl, method } = req
-  const { path } = url.parse(reqUrl)
-
+  const { method } = req
+  const path = req.url
+ 
   if(path === '/' && method === 'GET') {
     res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'})
-    res.write(principal)
-  } else if(path === '/about' && method === 'GET') {
+    res.write(topo+principal+rodape)
+  } else if(path === '/sobre' && method === 'GET') {
     res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'})
     res.write(sobre)
-  } else if(path ==='/contact' && method === 'GET') {
+  } else if(path ==='/contato' && method === 'GET') {
     res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'})
     res.write(contato)
   } else if(path==='/submit' && method === 'POST') {
     res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'})
-    res.write(enviado)
-    res.on('data', data => {
-      console.log(data.toString())
+   
+    let body =''
+    req.on('data', chunk => {
+        body += chunk.toString()
+
+    }).on('end', ()=> { 
+        const data = new URLSearchParams(body)
+        console.log(Object.fromEntries(data))
     })
   }
 

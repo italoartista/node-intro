@@ -36,55 +36,47 @@ const menu = `
 <nav> 
 <ul>
     <li><a href="/">Principal</a></li>
-    <li><a href="/about">Sobre</a></li>
-    <li><a href="/contact">Contato</a></li>
+    <li><a href="/sobre">Sobre</a></li>
+    <li><a href="/contato">Contato</a></li>
 </ul>
 </nav>
 `
 const principal = `
-    <html>
-        <head>
-            <title>Template</title>
-            ${style}
-        </head>
-        <body>
-            ${menu}
-            <h1>Principal</h1>
-        </body>
-    </html>
-`
+        <h1>Principal</h1>
+        <p>Seja bem vindo a loja de computadores!!</p>
+
+ `
+
 const sobre = `
-    <html>
-        <head>
-            <title>Template</title>
-            ${style}
-        </head>
-        <body>
-        ${menu}
             <h1>Sobre</h1>
-            <p>Este é um exemplo de página sobre</p>
-        </body>
-    </html>
+            <p>Loja com 30 anos de mercado, com os melhores produtos e preços.</p>
 `
 
 const contato = `
-<html>
-<head>
-    <title>Template</title>
-    ${style}
-</head>
-<body>
-${menu}
+
     <h1>Contato</h1>
-    <p>Este é um exemplo de página contato</p>
+    <p>Seja um consultor, coloque o nome e email, e entraremos em contato.</p>
     <form action="/submit" method="post">
         <input type="text" name="nome" placeholder="Nome">
         <input type="email" name="email" placeholder="E-mail">
         <button type="submit">Enviar</button>
     </form>
-</body>
-</html>
+`
 
+
+const topo = `
+<html>
+    <head>
+        <title>Template</title>
+        ${style}
+    </head>
+    <body>
+    ${menu}
+`
+
+const rodape = `
+    </body>
+    </html>
 `
 
 const enviado = `
@@ -102,4 +94,4 @@ ${menu}
 </html>
 
 `
-export { principal, sobre, contato, enviado}
+export { principal, sobre, contato, enviado, topo, rodape }
